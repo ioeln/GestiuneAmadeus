@@ -9,11 +9,11 @@ namespace ScoalaAmadeus.Models
     {
         public Guid StudentId { get; set; }
         public string Name { get; set; }
-        public DateTime Birthdate { get; set; }
-        public int Age { get; set; }
+        public DateTime? BirthDate { get; set; }
+        public int? Age { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
-        public string Phone_Number { get; set; }
+        public string Phone { get; set; }
         public Guid ProgramId { get; set; }
         public Guid CourseId { get; set; }
         public Guid TeacherId { get; set; }
