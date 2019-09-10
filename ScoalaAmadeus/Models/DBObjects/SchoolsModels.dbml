@@ -15,38 +15,8 @@
       <Column Name="TeacherId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ClassId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Association Name="Class_Schedule" Member="Class" ThisKey="ClassId" OtherKey="ClassId" Type="Class" IsForeignKey="true" />
-      <Association Name="Student_Schedule" Member="Student" ThisKey="StudentId" OtherKey="StudentId" Type="Student" IsForeignKey="true" />
       <Association Name="Teacher_Schedule" Member="Teacher" ThisKey="TeacherId" OtherKey="TeacherId" Type="Teacher" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Parents" Member="Parents">
-    <Type Name="Parent">
-      <Column Name="ParentId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Phone_Number" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Parent_Student" Member="Students" ThisKey="ParentId" OtherKey="ParentId" Type="Student" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Students" Member="Students">
-    <Type Name="Student">
-      <Column Name="StudentId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="BirthDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="Age" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Phone_Number" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="ProgramId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="CourseId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="TeacherId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ParentId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Association Name="Student_Schedule" Member="Schedules" ThisKey="StudentId" OtherKey="StudentId" Type="Schedule" />
-      <Association Name="Student_Invoice" Member="Invoices" ThisKey="StudentId" OtherKey="StudentId" Type="Invoice" />
-      <Association Name="Parent_Student" Member="Parent" ThisKey="ParentId" OtherKey="ParentId" Type="Parent" IsForeignKey="true" />
-      <Association Name="Program_Student" Member="Program" ThisKey="ProgramId" OtherKey="ProgramId" Type="Program" IsForeignKey="true" />
-      <Association Name="Teacher_Student" Member="Teacher" ThisKey="TeacherId" OtherKey="TeacherId" Type="Teacher" IsForeignKey="true" />
-      <Association Name="Course_Student" Member="Course" ThisKey="CourseId" OtherKey="CourseId" Type="Course" IsForeignKey="true" />
+      <Association Name="Student_Schedule" Member="Student" ThisKey="StudentId" OtherKey="StudentId" Type="Student" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Invoices" Member="Invoices">
@@ -58,9 +28,9 @@
       <Column Name="StudentId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="CourseId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ProgramId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Association Name="Student_Invoice" Member="Student" ThisKey="StudentId" OtherKey="StudentId" Type="Student" IsForeignKey="true" />
       <Association Name="Program_Invoice" Member="Program" ThisKey="ProgramId" OtherKey="ProgramId" Type="Program" IsForeignKey="true" />
       <Association Name="Course_Invoice" Member="Course" ThisKey="CourseId" OtherKey="CourseId" Type="Course" IsForeignKey="true" />
+      <Association Name="Student_Invoice" Member="Student" ThisKey="StudentId" OtherKey="StudentId" Type="Student" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Programs" Member="Programs">
@@ -68,8 +38,8 @@
       <Column Name="ProgramId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Hours_Mounth" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Program_Student" Member="Students" ThisKey="ProgramId" OtherKey="ProgramId" Type="Student" />
       <Association Name="Program_Invoice" Member="Invoices" ThisKey="ProgramId" OtherKey="ProgramId" Type="Invoice" />
+      <Association Name="Program_Student" Member="Students" ThisKey="ProgramId" OtherKey="ProgramId" Type="Student" />
     </Type>
   </Table>
   <Table Name="dbo.Teachers" Member="Teachers">
@@ -88,9 +58,39 @@
       <Column Name="CourseId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Association Name="Course_Student" Member="Students" ThisKey="CourseId" OtherKey="CourseId" Type="Student" />
       <Association Name="Course_Invoice" Member="Invoices" ThisKey="CourseId" OtherKey="CourseId" Type="Invoice" />
       <Association Name="Course_Teacher" Member="Teachers" ThisKey="CourseId" OtherKey="CourseId" Type="Teacher" />
+      <Association Name="Course_Student" Member="Students" ThisKey="CourseId" OtherKey="CourseId" Type="Student" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Parents" Member="Parents">
+    <Type Name="Parent">
+      <Column Name="ParentId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Parent_Student" Member="Students" ThisKey="ParentId" OtherKey="ParentId" Type="Student" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Students" Member="Students">
+    <Type Name="Student">
+      <Column Name="StudentId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BirthDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Age" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ProgramId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="CourseId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TeacherId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ParentId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Student_Schedule" Member="Schedules" ThisKey="StudentId" OtherKey="StudentId" Type="Schedule" />
+      <Association Name="Student_Invoice" Member="Invoices" ThisKey="StudentId" OtherKey="StudentId" Type="Invoice" />
+      <Association Name="Course_Student" Member="Course" ThisKey="CourseId" OtherKey="CourseId" Type="Course" IsForeignKey="true" />
+      <Association Name="Parent_Student" Member="Parent" ThisKey="ParentId" OtherKey="ParentId" Type="Parent" IsForeignKey="true" />
+      <Association Name="Program_Student" Member="Program" ThisKey="ProgramId" OtherKey="ProgramId" Type="Program" IsForeignKey="true" />
+      <Association Name="Teacher_Student" Member="Teacher" ThisKey="TeacherId" OtherKey="TeacherId" Type="Teacher" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

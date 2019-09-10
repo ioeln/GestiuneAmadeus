@@ -9,7 +9,7 @@ namespace ScoalaAmadeus.Models
     {
         public Guid ParentId { get; set; }
         public string Name { get; set; }
-        public string Phone_Number { get; set; }
+        public string Phone { get; set; }
         public string Email { get; set; }
     }
 }

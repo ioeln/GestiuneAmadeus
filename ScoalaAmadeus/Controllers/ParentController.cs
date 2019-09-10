@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ScoalaAmadeus.Models;
+using ScoalaAmadeus.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,22 +10,28 @@ namespace ScoalaAmadeus.Controllers
 {
     public class ParentController : Controller
     {
+        private ParentRepository parentRepository = new ParentRepository();
         // GET: Parent
         public ActionResult Index()
         {
-            return View();
+            List<ParentModel> parentsList = new List<ParentModel>();
+
+            parentsList = parentRepository.GetAllParents();
+
+            return View("Index", parentsList);
         }
 
         // GET: Parent/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            ParentModel parentModel = parentRepository.GetParentById(id);
+            return View("Details", parentModel);
         }
 
         // GET: Parent/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Create");
         }
 
         // POST: Parent/Create
@@ -33,56 +41,71 @@ namespace ScoalaAmadeus.Controllers
             try
             {
                 // TODO: Add insert logic here
+                ParentModel parentModel = new ParentModel();
+
+                UpdateModel(parentModel);
+
+                parentRepository.Insert(parentModel);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("Create");
             }
         }
 
         // GET: Parent/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            ParentModel parentModel = parentRepository.GetParentById(id);
+
+            return View("Edit", parentModel);
         }
 
         // POST: Parent/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Guid id, FormCollection collection)
         {
             try
             {
                 // TODO: Add update logic here
+                ParentModel parentModel = new ParentModel();
+
+                UpdateModel(parentModel);
+
+                parentRepository.Update(parentModel);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("Edit");
             }
         }
 
         // GET: Parent/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            ParentModel parentModel = parentRepository.GetParentById(id);
+
+            return View("Delete", parentModel);
         }
 
         // POST: Parent/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Guid id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
+                parentRepository.Delete(id);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("Delete");
             }
         }
     }
