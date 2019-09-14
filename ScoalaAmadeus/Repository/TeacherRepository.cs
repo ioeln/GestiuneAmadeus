@@ -20,7 +20,7 @@ namespace ScoalaAmadeus.Repository
             this.dbContext = dbContext;
         }
 
-        public void InsertTeacher(Models.DBObjects.Teacher teacherModel)
+        public void InsertTeacher(TeacherModel teacherModel)
         {
             teacherModel.TeacherId = Guid.NewGuid();
 

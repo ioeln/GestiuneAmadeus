@@ -21,7 +21,7 @@ namespace ScoalaAmadeus.Repository
             this.dbContext = dbContext;
         }
 
-        public void InsertCourse(Models.DBObjects.Course courseModel)
+        public void InsertCourse(CourseModel courseModel)
         {
             courseModel.CourseId = Guid.NewGuid();
 

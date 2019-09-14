@@ -45,7 +45,7 @@ namespace ScoalaAmadeus.Controllers
             try
             {
                 // TODO: Add insert logic here
-                Models.DBObjects.Course courseModel = new Models.DBObjects.Course();
+                CourseModel courseModel = new CourseModel();
 
                 UpdateModel(courseModel);
 
