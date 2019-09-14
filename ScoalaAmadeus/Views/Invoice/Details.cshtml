@@ -1,0 +1,75 @@
+﻿@model ScoalaAmadeus.Models.InvoiceModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>InvoiceModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.InvoiceId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InvoiceId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Invoice_Series)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Invoice_Series)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Create_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Create_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contractor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contractor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProgramId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProgramId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.InvoiceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

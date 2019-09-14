@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ScoalaAmadeus.Models.InvoiceModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Invoice_Series)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Create_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contractor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProgramId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Invoice_Series)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Create_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contractor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProgramId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.InvoiceId }) |
+            @Html.ActionLink("Details", "Details", new {  id=item.InvoiceId }) |
+            @Html.ActionLink("Delete", "Delete", new {  id=item.InvoiceId })
+        </td>
+    </tr>
+}
+
+</table>
