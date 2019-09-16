@@ -11,13 +11,13 @@ namespace ScoalaAmadeus.Models
         
         public Guid CourseId { get; set; }
 
-        [Required(ErrorMessage ="Mandatory Field")]
+        [Required(ErrorMessage ="Name is mandatory")]
         [StringLength(50, MinimumLength = 3,
         ErrorMessage ="Name must be min. 3 char and max. 50 char")]
         [DataType(DataType.Text)]
         public string Name { get; set; }
 
-        [Required(ErrorMessage ="Mandatory Field")]
+        [Required(ErrorMessage ="Price is mandatory")]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
     }
