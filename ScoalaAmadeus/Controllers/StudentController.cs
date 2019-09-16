@@ -10,6 +10,8 @@ namespace ScoalaAmadeus.Controllers
 {
     public class StudentController : Controller
     {
+        private InvoiceRepository invoiceRepository = new InvoiceRepository();
+
         private StudentRepository studentRepository = new StudentRepository();
 
         // GET: Student
@@ -44,9 +46,6 @@ namespace ScoalaAmadeus.Controllers
             SelectList programList = new SelectList(programs, "ProgramId", "Name");
             ViewData["program"] = programList;
 
-            var courses = courseRepository.GetAllCourses();
-            SelectList courseList = new SelectList(courses, "CourseId", "Name");
-            ViewData["course"] = courseList;
 
             var teachers = teacherRepository.GetAllTeachers();
             SelectList teacherList = new SelectList(teachers, "TeacherId", "Name");
@@ -124,6 +123,13 @@ namespace ScoalaAmadeus.Controllers
             try
             {
                 // TODO: Add delete logic here
+                List<InvoiceModel> invoicesList = invoiceRepository.GetAllInvoicesByStudentId(id);
+
+                foreach (InvoiceModel invoice in invoicesList)
+                {
+                    invoiceRepository.Delete(invoice.InvoiceId);
+                }
+
                 studentRepository.Delete(id);
 
                 return RedirectToAction("Index");

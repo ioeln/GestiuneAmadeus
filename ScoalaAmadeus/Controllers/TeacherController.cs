@@ -1,4 +1,5 @@
 ﻿using ScoalaAmadeus.Models;
+using ScoalaAmadeus.ViewModels;
 using ScoalaAmadeus.Repository;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace ScoalaAmadeus.Controllers
 {
     public class TeacherController : Controller
     {
+        private StudentRepository studentRepository = new StudentRepository();
+
         private TeacherRepository teacherRepository = new TeacherRepository();
 
         private CourseRepository courseRepository = new CourseRepository();
@@ -21,6 +24,15 @@ namespace ScoalaAmadeus.Controllers
             teachersList = teacherRepository.GetAllTeachers();
 
             return View("Index", teachersList);
+        }
+
+        public ActionResult TeacherWithCourseName()
+        {
+            List<TeacherWithCourseNameViewModel> teachersList = new List<TeacherWithCourseNameViewModel>();
+
+            teachersList = teacherRepository.GetAllTeachersWithCourseNames();
+
+            return View("TeacherWithCourseName", teachersList);
         }
 
         // GET: Teacher/Details/5
@@ -55,7 +67,7 @@ namespace ScoalaAmadeus.Controllers
 
                 teacherRepository.InsertTeacher(teacherModel);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("TeacherWithCourseName");
             }
             catch
             {
@@ -84,7 +96,7 @@ namespace ScoalaAmadeus.Controllers
 
                 teacherRepository.UpdateTeacher(teacherModel);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("TeacherWithCourseName");
             }
             catch
             {
@@ -107,9 +119,15 @@ namespace ScoalaAmadeus.Controllers
             try
             {
                 // TODO: Add delete logic here
+                List<StudentModel> studentsList = studentRepository.GetAllStudentsByTeacherId(id);
+                foreach (StudentModel student in studentsList)
+                {
+                    studentRepository.Delete(student.StudentId);
+                }
+
                 teacherRepository.DeleteTeacher(id);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("TeacherWithCourseName");
             }
             catch
             {

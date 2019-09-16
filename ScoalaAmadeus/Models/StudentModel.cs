@@ -35,11 +35,14 @@ namespace ScoalaAmadeus.Models
         [StringLength(20, ErrorMessage = "Too long max. 20 char")]
         public string Phone { get; set; }
 
-        public Guid ProgramId { get; set; }
-
-        public Guid CourseId { get; set; }
-
         public Guid TeacherId { get; set; }
+
+        [Required(ErrorMessage = "Course is mandatory")]
+        [StringLength(50, ErrorMessage = "Too long max. 50 char")]
+        [DataType(DataType.Text)]
+        public string Course { get; set; }
+
+        public Guid ProgramId { get; set; }
 
         public Guid ParentId { get; set; }
     }

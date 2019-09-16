@@ -1,4 +1,5 @@
 ﻿using ScoalaAmadeus.Models;
+using ScoalaAmadeus.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,9 @@ namespace ScoalaAmadeus.Repository
 {
     public class TeacherRepository
     {
+        
+        private CourseRepository courseRepository = new CourseRepository();
+
         private Models.DBObjects.SchoolsModelsDataContext dbContext;
 
         public TeacherRepository()
@@ -40,6 +44,32 @@ namespace ScoalaAmadeus.Repository
 
         }
 
+        public List<TeacherWithCourseNameViewModel> GetAllTeachersWithCourseNames()
+        {
+            List<TeacherWithCourseNameViewModel> teachersList = new List<TeacherWithCourseNameViewModel>();
+
+            foreach (Models.DBObjects.Teacher dbTeacherModel in dbContext.Teachers)
+            {
+                TeacherWithCourseNameViewModel teacherWithCourseNameModel = new TeacherWithCourseNameViewModel();
+
+                teacherWithCourseNameModel.TeacherId = dbTeacherModel.TeacherId;
+                teacherWithCourseNameModel.Name = dbTeacherModel.Name;
+                teacherWithCourseNameModel.Phone = dbTeacherModel.Phone;
+                teacherWithCourseNameModel.CourseId = dbTeacherModel.CourseId;
+
+                var courses = courseRepository.GetAllCourses();
+
+                foreach (var course in courses)
+                {
+                    if (teacherWithCourseNameModel.CourseId == course.CourseId)
+                    {
+                        teacherWithCourseNameModel.CourseName = course.Name;
+                    }
+                }
+                teachersList.Add(teacherWithCourseNameModel);
+            }
+            return teachersList;
+        }
         public List<TeacherModel> GetAllTeachers()
         {
             List<TeacherModel> teachersList = new List<TeacherModel>();
@@ -93,12 +123,17 @@ namespace ScoalaAmadeus.Repository
 
         }
 
+
         public void DeleteTeacher(Guid id)
         {
             Models.DBObjects.Teacher teacherToDelete = dbContext.Teachers.FirstOrDefault(m => m.TeacherId == id);
 
             dbContext.Teachers.DeleteOnSubmit(teacherToDelete);
+            
             dbContext.SubmitChanges();
+
+
+
         }
 
     }

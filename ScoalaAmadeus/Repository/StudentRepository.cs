@@ -1,4 +1,5 @@
 ﻿using ScoalaAmadeus.Models;
+using ScoalaAmadeus.Models.DBObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,8 +37,8 @@ namespace ScoalaAmadeus.Repository
                 dbStudentModel.Email = studentModel.Email;
                 dbStudentModel.Phone = studentModel.Phone;
                 dbStudentModel.ProgramId = studentModel.ProgramId;
-                dbStudentModel.CourseId = studentModel.CourseId;
                 dbStudentModel.TeacherId = studentModel.TeacherId;
+                dbStudentModel.Course = studentModel.Course;               
                 dbStudentModel.ParentId = studentModel.ParentId;
 
                 dbContext.Students.InsertOnSubmit(dbStudentModel);
@@ -64,8 +65,9 @@ namespace ScoalaAmadeus.Repository
                     studentModel.Email = dbStudentModel.Email;
                     studentModel.Phone = dbStudentModel.Phone;
                     studentModel.ProgramId = dbStudentModel.ProgramId;
-                    studentModel.CourseId = dbStudentModel.CourseId;
+                    
                     studentModel.TeacherId = dbStudentModel.TeacherId;
+                    studentModel.Course = dbStudentModel.Course;
                     studentModel.ParentId = dbStudentModel.ParentId;
 
                     studentsList.Add(studentModel);
@@ -90,8 +92,8 @@ namespace ScoalaAmadeus.Repository
                 studentModel.Email = dbStudentModel.Email;
                 studentModel.Phone = dbStudentModel.Phone;
                 studentModel.ProgramId = dbStudentModel.ProgramId;
-                studentModel.CourseId = dbStudentModel.CourseId;
                 studentModel.TeacherId = dbStudentModel.TeacherId;
+                studentModel.Course = dbStudentModel.Course;
                 studentModel.ParentId = dbStudentModel.ParentId;
             }
             return studentModel;
@@ -111,8 +113,9 @@ namespace ScoalaAmadeus.Repository
                 dbStudentModel.Email = studentModel.Email;
                 dbStudentModel.Phone = studentModel.Phone;
                 dbStudentModel.ProgramId = studentModel.ProgramId;
-                dbStudentModel.CourseId = studentModel.CourseId;
+                
                 dbStudentModel.TeacherId = studentModel.TeacherId;
+                dbStudentModel.Course = studentModel.Course;
                 dbStudentModel.ParentId = studentModel.ParentId;
 
                 dbContext.SubmitChanges();
@@ -126,6 +129,35 @@ namespace ScoalaAmadeus.Repository
 
             dbContext.Students.DeleteOnSubmit(dbStudentModel);
             dbContext.SubmitChanges();
+        }
+
+        public List<StudentModel> GetAllStudentsByTeacherId(Guid Id)
+        {
+            List<StudentModel> studentsList = new List<StudentModel>();
+            List<Student> students = dbContext.Students.Where(x => x.TeacherId == Id).ToList();
+
+            foreach (Models.DBObjects.Student dbStudentModel in students)
+            {
+               
+                    StudentModel studentModel = new StudentModel();
+
+                    studentModel.StudentId = dbStudentModel.StudentId;
+                    studentModel.Name = dbStudentModel.Name;
+                    studentModel.BirthDate = dbStudentModel.BirthDate;
+                    studentModel.Age = dbStudentModel.Age;
+                    studentModel.Address = dbStudentModel.Address;
+                    studentModel.Email = dbStudentModel.Email;
+                    studentModel.Phone = dbStudentModel.Phone;
+                    studentModel.ProgramId = dbStudentModel.ProgramId;
+                    
+                    studentModel.TeacherId = dbStudentModel.TeacherId;
+                studentModel.Course = dbStudentModel.Course;
+                studentModel.ParentId = dbStudentModel.ParentId;
+
+                    studentsList.Add(studentModel);
+                
+            }
+            return studentsList;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ScoalaAmadeus.Models;
+using ScoalaAmadeus.Models.DBObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,8 +31,8 @@ namespace ScoalaAmadeus.Repository
                 dbInvoiceModel.Create_Date = invoiceModel.Create_Date;
                 dbInvoiceModel.Contractor = invoiceModel.Contractor;
                 dbInvoiceModel.StudentId = invoiceModel.StudentId;
-                dbInvoiceModel.CourseId = invoiceModel.CourseId;
-                dbInvoiceModel.ProgramId = invoiceModel.ProgramId;
+                dbInvoiceModel.Course = invoiceModel.Course;
+                dbInvoiceModel.Program = invoiceModel.Program;
 
                 dbContext.Invoices.InsertOnSubmit(dbInvoiceModel);
                 dbContext.SubmitChanges();
@@ -50,8 +51,8 @@ namespace ScoalaAmadeus.Repository
                 invoiceModel.Create_Date = dbInvoiceModel.Create_Date;
                 invoiceModel.Contractor = dbInvoiceModel.Contractor;
                 invoiceModel.StudentId = dbInvoiceModel.StudentId;
-                invoiceModel.CourseId = dbInvoiceModel.CourseId;
-                invoiceModel.ProgramId = dbInvoiceModel.ProgramId;
+                invoiceModel.Course = dbInvoiceModel.Course;
+                invoiceModel.Program = dbInvoiceModel.Program;
 
                 invoicesList.Add(invoiceModel);
             }
@@ -69,8 +70,8 @@ namespace ScoalaAmadeus.Repository
                 invoiceModel.Create_Date = dbInvoiceModel.Create_Date;
                 invoiceModel.Contractor = dbInvoiceModel.Contractor;
                 invoiceModel.StudentId = dbInvoiceModel.StudentId;
-                invoiceModel.CourseId = dbInvoiceModel.CourseId;
-                invoiceModel.ProgramId = dbInvoiceModel.ProgramId;
+                invoiceModel.Course = dbInvoiceModel.Course;
+                invoiceModel.Program = dbInvoiceModel.Program;
             }
             return invoiceModel;
         }
@@ -85,8 +86,8 @@ namespace ScoalaAmadeus.Repository
                 dbInvoiceModel.Create_Date = invoiceModel.Create_Date;
                 dbInvoiceModel.Contractor = invoiceModel.Contractor;
                 dbInvoiceModel.StudentId = invoiceModel.StudentId;
-                dbInvoiceModel.CourseId = invoiceModel.CourseId;
-                dbInvoiceModel.ProgramId = invoiceModel.ProgramId;
+                dbInvoiceModel.Course = invoiceModel.Course;
+                dbInvoiceModel.Program = invoiceModel.Program;
 
                 dbContext.SubmitChanges();
             }
@@ -99,6 +100,30 @@ namespace ScoalaAmadeus.Repository
             dbContext.Invoices.DeleteOnSubmit(dbInvoiceModel);
 
             dbContext.SubmitChanges();
+        }
+
+        public List<InvoiceModel> GetAllInvoicesByStudentId(Guid id)
+        {
+            List<InvoiceModel> invoicesList = new List<InvoiceModel>();
+            List<Invoice> invoices = dbContext.Invoices.Where(x => x.StudentId == id).ToList();
+
+            foreach (Models.DBObjects.Invoice dbInvoiceModel in invoices)
+            {
+                
+                    InvoiceModel invoiceModel = new InvoiceModel();
+
+                    invoiceModel.InvoiceId = dbInvoiceModel.InvoiceId;
+                    invoiceModel.Invoice_Series = dbInvoiceModel.Invoice_Series;
+                    invoiceModel.Create_Date = dbInvoiceModel.Create_Date;
+                    invoiceModel.Contractor = dbInvoiceModel.Contractor;
+                    invoiceModel.StudentId = dbInvoiceModel.StudentId;
+                    invoiceModel.Course = dbInvoiceModel.Course;
+                    invoiceModel.Program = dbInvoiceModel.Program;
+
+                    invoicesList.Add(invoiceModel);
+                            
+            }
+            return invoicesList;
         }
     }
 }

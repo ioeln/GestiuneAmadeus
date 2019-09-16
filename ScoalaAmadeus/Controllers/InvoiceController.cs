@@ -36,13 +36,6 @@ namespace ScoalaAmadeus.Controllers
             SelectList studentList = new SelectList(students, "StudentId", "Name");
             ViewData["student2"] = studentList;
 
-            var courses = courseRepository.GetAllCourses();
-            SelectList courselist = new SelectList(courses, "CourseId", "Name");
-            ViewData["course2"] = courselist;
-
-            var programs = programRepository.GetAllPrograms();
-            SelectList programList = new SelectList(programs, "ProgramId", "Name");
-            ViewData["Program2"] = programList;
 
             return View("Create");
         }
