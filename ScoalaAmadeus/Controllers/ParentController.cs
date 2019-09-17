@@ -10,6 +10,10 @@ namespace ScoalaAmadeus.Controllers
 {
     public class ParentController : Controller
     {
+        private InvoiceRepository invoiceRepository = new InvoiceRepository();
+
+        private StudentRepository studentRepository = new StudentRepository();
+
         private ParentRepository parentRepository = new ParentRepository();
         // GET: Parent
         public ActionResult Index()
@@ -99,6 +103,18 @@ namespace ScoalaAmadeus.Controllers
             try
             {
                 // TODO: Add delete logic here
+                List<StudentModel> studentsList = studentRepository.GetAllStudentsByParentId(id);
+                foreach (StudentModel student in studentsList)
+                {
+                    List<InvoiceModel> invoices = invoiceRepository.GetAllInvoicesByStudentId(student.StudentId);
+                    foreach (InvoiceModel invoice in invoices)
+                    {
+                        invoiceRepository.Delete(invoice.InvoiceId);
+                    }
+
+                    studentRepository.Delete(student.StudentId);
+                }
+
                 parentRepository.Delete(id);
 
                 return RedirectToAction("Index");

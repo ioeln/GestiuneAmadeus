@@ -26,14 +26,9 @@ namespace ScoalaAmadeus.Models
 
         public Guid StudentId { get; set; }
 
-        [Required(ErrorMessage = "Course is mandatory")]
-        [StringLength(50, ErrorMessage = "Too long max. 50 char")]
-        [DataType(DataType.Text)]
-        public string Course { get; set; }
+        [Required(ErrorMessage = "Quantity is mandatory")]
+        public int Quantity { get; set; }
 
-        [Required(ErrorMessage = "Program is mandatory")]
-        [StringLength(50, ErrorMessage = "Too long max. 50 char")]
-        [DataType(DataType.Text)]
-        public string Program { get; set; }
+      
     }
 }

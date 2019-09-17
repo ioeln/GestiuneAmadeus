@@ -214,6 +214,7 @@
     <Compile Include="Repository\StudentRepository.cs" />
     <Compile Include="Repository\TeacherRepository.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\StudentWithPropNamesViewModel.cs" />
     <Compile Include="ViewModels\TeacherWithCourseNameViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

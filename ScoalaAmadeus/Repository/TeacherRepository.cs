@@ -9,7 +9,7 @@ namespace ScoalaAmadeus.Repository
 {
     public class TeacherRepository
     {
-        
+                
         private CourseRepository courseRepository = new CourseRepository();
 
         private Models.DBObjects.SchoolsModelsDataContext dbContext;
@@ -136,5 +136,24 @@ namespace ScoalaAmadeus.Repository
 
         }
 
+        public List<TeacherModel> GetAllTeachersByCourseId(Guid Id)
+        {
+            List<TeacherModel> teachersList = new List<TeacherModel>();
+
+            List<Models.DBObjects.Teacher> teachers = dbContext.Teachers.Where(x => x.CourseId == Id).ToList();
+
+            foreach (Models.DBObjects.Teacher dbTeacherModel in teachers)
+            {
+                TeacherModel teacherModel = new TeacherModel();
+
+                teacherModel.TeacherId = dbTeacherModel.TeacherId;
+                teacherModel.Name = dbTeacherModel.Name;
+                teacherModel.Phone = dbTeacherModel.Phone;
+                teacherModel.CourseId = dbTeacherModel.CourseId;
+
+                teachersList.Add(teacherModel);
+            }
+            return teachersList;
+        }
     }
 }

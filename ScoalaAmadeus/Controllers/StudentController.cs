@@ -1,4 +1,5 @@
 ﻿using ScoalaAmadeus.Models;
+using ScoalaAmadeus.ViewModels;
 using ScoalaAmadeus.Repository;
 using System;
 using System.Collections.Generic;
@@ -17,12 +18,13 @@ namespace ScoalaAmadeus.Controllers
         // GET: Student
         public ActionResult Index()
         {
-            List<StudentModel> studentsList = new List<StudentModel>();
 
-            studentsList = studentRepository.GetAllStudents();
+            List<StudentWithPropNamesViewModel> studentsList = studentRepository.GetAllStudentsWithPropNames();
 
             return View("Index", studentsList);
         }
+
+        
 
         // GET: Student/Details/5
         public ActionResult Details(Guid id)
@@ -45,7 +47,6 @@ namespace ScoalaAmadeus.Controllers
             var programs = programRepository.GetAllPrograms();
             SelectList programList = new SelectList(programs, "ProgramId", "Name");
             ViewData["program"] = programList;
-
 
             var teachers = teacherRepository.GetAllTeachers();
             SelectList teacherList = new SelectList(teachers, "TeacherId", "Name");

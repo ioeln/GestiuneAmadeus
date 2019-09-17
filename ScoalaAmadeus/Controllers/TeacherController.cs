@@ -11,6 +11,8 @@ namespace ScoalaAmadeus.Controllers
 {
     public class TeacherController : Controller
     {
+        private InvoiceRepository invoiceRepository = new InvoiceRepository();
+
         private StudentRepository studentRepository = new StudentRepository();
 
         private TeacherRepository teacherRepository = new TeacherRepository();
@@ -119,9 +121,17 @@ namespace ScoalaAmadeus.Controllers
             try
             {
                 // TODO: Add delete logic here
+               
                 List<StudentModel> studentsList = studentRepository.GetAllStudentsByTeacherId(id);
                 foreach (StudentModel student in studentsList)
                 {
+                    List<InvoiceModel> invoicesList = invoiceRepository.GetAllInvoicesByStudentId(student.StudentId);
+                    foreach (InvoiceModel invoice in invoicesList)
+                    {
+                        invoiceRepository.Delete(invoice.InvoiceId);
+                    }
+                    
+
                     studentRepository.Delete(student.StudentId);
                 }
 
