@@ -1,4 +1,5 @@
 ﻿using ScoalaAmadeus.Models;
+using ScoalaAmadeus.ViewModels;
 using ScoalaAmadeus.Models.DBObjects;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ namespace ScoalaAmadeus.Repository
 {
     public class InvoiceRepository
     {
+        private StudentRepository studentRepository = new StudentRepository();
+
         private Models.DBObjects.SchoolsModelsDataContext dbContext;
 
         public InvoiceRepository()
@@ -58,6 +61,36 @@ namespace ScoalaAmadeus.Repository
             }
             return invoicesList;
         }
+        public List<InvoiceWithStudentNameViewModel> GetAllInvoicesWithStudentNames()
+        {
+            List<InvoiceWithStudentNameViewModel> invoicesList = new List<InvoiceWithStudentNameViewModel>();
+            List<StudentModel> studentsList = studentRepository.GetAllStudents();
+
+            foreach (Models.DBObjects.Invoice dbInvoiceModel in dbContext.Invoices)
+            {
+                InvoiceWithStudentNameViewModel invoiceModel = new InvoiceWithStudentNameViewModel();
+
+                invoiceModel.InvoiceId = dbInvoiceModel.InvoiceId;
+                invoiceModel.Invoice_Series = dbInvoiceModel.Invoice_Series;
+                invoiceModel.Create_Date = dbInvoiceModel.Create_Date;
+                invoiceModel.Contractor = dbInvoiceModel.Contractor;
+                invoiceModel.StudentId = dbInvoiceModel.StudentId;
+                invoiceModel.Quantity = dbInvoiceModel.Quantity;
+
+                foreach (StudentModel student in studentsList)
+                {
+                    if (student.StudentId == dbInvoiceModel.StudentId)
+                    {
+                        invoiceModel.StudentName = student.Name;
+                    }
+                }
+
+
+                invoicesList.Add(invoiceModel);
+            }
+            return invoicesList;
+        }
+
         public InvoiceModel GetInvoiceById(int id)
         {
             Models.DBObjects.Invoice dbInvoiceModel = dbContext.Invoices.FirstOrDefault(m => m.InvoiceId == id);
@@ -87,7 +120,6 @@ namespace ScoalaAmadeus.Repository
                 dbInvoiceModel.Contractor = invoiceModel.Contractor;
                 dbInvoiceModel.StudentId = invoiceModel.StudentId;
                 dbInvoiceModel.Quantity = invoiceModel.Quantity;
-                
 
                 dbContext.SubmitChanges();
             }

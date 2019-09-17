@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace ScoalaAmadeus.Models
 {
     public class InvoiceModel
     {
+        public DateTime _creationDate = DateTime.Today;
+
         public int InvoiceId { get; set; }
 
         [Required(ErrorMessage = "Series is mandatory")]
@@ -29,6 +32,7 @@ namespace ScoalaAmadeus.Models
         [Required(ErrorMessage = "Quantity is mandatory")]
         public int Quantity { get; set; }
 
+    
       
     }
 }

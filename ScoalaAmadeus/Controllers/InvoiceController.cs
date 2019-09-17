@@ -1,4 +1,5 @@
 ﻿using ScoalaAmadeus.Models;
+using ScoalaAmadeus.ViewModels;
 using ScoalaAmadeus.Repository;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,10 @@ namespace ScoalaAmadeus.Controllers
         // GET: Invoice
         public ActionResult Index()
         {
-            List<InvoiceModel> invoicesList = invoiceRepository.GetAllInvoices();
+            List<InvoiceWithStudentNameViewModel> invoicesList = invoiceRepository.GetAllInvoicesWithStudentNames();
+
             return View("Index", invoicesList);
+
         }
 
         // GET: Invoice/Details/5
@@ -65,6 +68,7 @@ namespace ScoalaAmadeus.Controllers
         public ActionResult Edit(int id)
         {
             InvoiceModel invoiceModel = invoiceRepository.GetInvoiceById(id);
+
             return View("Edit", invoiceModel);
         }
 
