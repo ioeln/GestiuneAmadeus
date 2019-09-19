@@ -4,6 +4,7 @@ using ScoalaAmadeus.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Rotativa;
 using System.Web;
 using System.Web.Mvc;
 
@@ -121,6 +122,17 @@ namespace ScoalaAmadeus.Controllers
             PreviewInvoiceViewModel previewModel = invoiceRepository.GetInvoicePreviewById(id);
 
             return View("Preview", previewModel);
+        }
+
+        public ActionResult ExportPdf(int id)
+        {
+            PreviewInvoiceViewModel previewModel = invoiceRepository.GetInvoicePreviewById(id);
+
+            return new ActionAsPdf("Preview",  new { id = previewModel.InvoiceId })
+            {
+                FileName = Server.MapPath("~/Content/Invoice.pdf")
+            };
+          
         }
     }
 }

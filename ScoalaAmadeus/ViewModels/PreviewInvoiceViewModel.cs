@@ -19,13 +19,6 @@ namespace ScoalaAmadeus.ViewModels
 
         public decimal Total { get; set; }
 
-        public PreviewInvoiceViewModel()
-        {
-            //Value = StudentPrice * Quantity ;
-
-            //Total = Value;
-
-            //Product = "Cursuri Muz - ";
-        }
+  
     }
 }

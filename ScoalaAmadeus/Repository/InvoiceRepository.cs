@@ -227,7 +227,7 @@ namespace ScoalaAmadeus.Repository
                 }
                 previewModel.Product = "Cursuri Muzica - " + dbInvoiceModel.StudentCourse;
                 previewModel.Value = dbInvoiceModel.StudentPrice * dbInvoiceModel.Quantity;
-                previewModel.Total = dbInvoiceModel.StudentPrice;
+                previewModel.Total = previewModel.Value;
             }
             return previewModel;
         }
