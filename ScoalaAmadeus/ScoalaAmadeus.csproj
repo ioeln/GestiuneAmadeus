@@ -215,6 +215,7 @@
     <Compile Include="Repository\TeacherRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\InvoiceWithStudentNameViewModel.cs" />
+    <Compile Include="ViewModels\PreviewInvoiceViewModel.cs" />
     <Compile Include="ViewModels\StudentWithPropNamesViewModel.cs" />
     <Compile Include="ViewModels\TeacherWithCourseNameViewModel.cs" />
   </ItemGroup>
@@ -327,6 +328,7 @@
     <Content Include="Views\Invoice\Delete.cshtml" />
     <Content Include="Views\Teacher\TeacherWithCourseName.cshtml" />
     <Content Include="Views\Invoice\Edit.cshtml" />
+    <Content Include="Views\Invoice\Preview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

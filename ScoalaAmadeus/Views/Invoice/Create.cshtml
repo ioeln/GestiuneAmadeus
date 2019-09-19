@@ -11,11 +11,11 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>InvoiceModel</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @*<div class="form-group">
+<div class="form-horizontal">
+    <h4>InvoiceModel</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*<div class="form-group">
             @Html.LabelFor(model => model.InvoiceId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.InvoiceId, new { htmlAttributes = new { @class = "form-control" } })
@@ -23,54 +23,52 @@
             </div>
         </div>*@
 
-        <div class="form-group">
-            @Html.Label("Series", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Invoice_Series, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Invoice_Series, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Creation Date", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Create_Date,  new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Create_Date, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Contractor, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Contractor, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Contractor, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Student", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.StudentId, ViewData["student2"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.StudentId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-    
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        @Html.Label("Series", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Invoice_Series, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Invoice_Series, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.Label("Creation Date", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Create_Date, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Create_Date, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Contractor, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Contractor, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Contractor, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Student", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.StudentId, ViewData["student2"] as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.StudentId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>

@@ -7,10 +7,9 @@ using System.Web;
 
 namespace ScoalaAmadeus.Models
 {
+
     public class InvoiceModel
     {
-        public DateTime _creationDate = DateTime.Today;
-
         public int InvoiceId { get; set; }
 
         [Required(ErrorMessage = "Series is mandatory")]
@@ -32,7 +31,11 @@ namespace ScoalaAmadeus.Models
         [Required(ErrorMessage = "Quantity is mandatory")]
         public int Quantity { get; set; }
 
-    
-      
+        public string StudentCourse { get; set; }
+
+        public decimal StudentPrice { get; set; }
+
+
+
     }
 }

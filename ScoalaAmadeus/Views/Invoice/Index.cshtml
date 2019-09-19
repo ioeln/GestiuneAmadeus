@@ -27,6 +27,12 @@
         <th>
             @Html.DisplayName("Student")
         </th>
+        <th>
+            @Html.DisplayName("Course")
+        </th>
+        <th>
+            @Html.DisplayName("Price")
+        </th>
         <th></th>
     </tr>
 
@@ -48,9 +54,16 @@
             @Html.DisplayFor(modelItem => item.StudentName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.InvoiceId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.InvoiceId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.InvoiceId })
+            @Html.DisplayFor(modelItem => item.StudentCourse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentPrice)
+        </td>
+        <td>
+            @Html.ActionLink("Preview Invoice", "Preview", new { id = item.InvoiceId}) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.InvoiceId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.InvoiceId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceId })
         </td>
     </tr>
 }

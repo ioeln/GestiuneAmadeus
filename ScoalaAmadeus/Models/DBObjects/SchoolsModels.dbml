@@ -82,6 +82,8 @@
       <Column Name="Contractor" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="StudentId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StudentCourse" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="StudentPrice" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Association Name="Student_Invoice" Member="Student" ThisKey="StudentId" OtherKey="StudentId" Type="Student" IsForeignKey="true" />
     </Type>
   </Table>

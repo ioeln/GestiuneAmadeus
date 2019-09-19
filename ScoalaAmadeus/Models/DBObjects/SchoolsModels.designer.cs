@@ -1690,6 +1690,10 @@ namespace ScoalaAmadeus.Models.DBObjects
 		
 		private int _Quantity;
 		
+		private string _StudentCourse;
+		
+		private decimal _StudentPrice;
+		
 		private EntityRef<Student> _Student;
 		
     #region Extensibility Method Definitions
@@ -1708,6 +1712,10 @@ namespace ScoalaAmadeus.Models.DBObjects
     partial void OnStudentIdChanged();
     partial void OnQuantityChanging(int value);
     partial void OnQuantityChanged();
+    partial void OnStudentCourseChanging(string value);
+    partial void OnStudentCourseChanged();
+    partial void OnStudentPriceChanging(decimal value);
+    partial void OnStudentPriceChanged();
     #endregion
 		
 		public Invoice()
@@ -1836,6 +1844,46 @@ namespace ScoalaAmadeus.Models.DBObjects
 					this._Quantity = value;
 					this.SendPropertyChanged("Quantity");
 					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentCourse", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string StudentCourse
+		{
+			get
+			{
+				return this._StudentCourse;
+			}
+			set
+			{
+				if ((this._StudentCourse != value))
+				{
+					this.OnStudentCourseChanging(value);
+					this.SendPropertyChanging();
+					this._StudentCourse = value;
+					this.SendPropertyChanged("StudentCourse");
+					this.OnStudentCourseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentPrice", DbType="Decimal(18,0) NOT NULL")]
+		public decimal StudentPrice
+		{
+			get
+			{
+				return this._StudentPrice;
+			}
+			set
+			{
+				if ((this._StudentPrice != value))
+				{
+					this.OnStudentPriceChanging(value);
+					this.SendPropertyChanging();
+					this._StudentPrice = value;
+					this.SendPropertyChanged("StudentPrice");
+					this.OnStudentPriceChanged();
 				}
 			}
 		}

@@ -12,6 +12,7 @@ namespace ScoalaAmadeus.Controllers
     public class InvoiceController : Controller
     {
         private InvoiceRepository invoiceRepository = new InvoiceRepository();
+
         // GET: Invoice
         public ActionResult Index()
         {
@@ -114,6 +115,12 @@ namespace ScoalaAmadeus.Controllers
             {
                 return View("Delete");
             }
+        }
+        public ActionResult Preview(int id)
+        {
+            PreviewInvoiceViewModel previewModel = invoiceRepository.GetInvoicePreviewById(id);
+
+            return View("Preview", previewModel);
         }
     }
 }

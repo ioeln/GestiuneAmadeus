@@ -6,6 +6,7 @@ using System.Web;
 
 namespace ScoalaAmadeus.Models
 {
+
     public class StudentModel
     {
         public Guid StudentId { get; set; }
@@ -20,17 +21,17 @@ namespace ScoalaAmadeus.Models
 
         public int? Age { get; set; }
 
-        [Required(ErrorMessage ="Address is mandatory")]
+        [Required(ErrorMessage = "Address is mandatory")]
         [DataType(DataType.Text)]
-        [StringLength(200, ErrorMessage ="Too long max. 200 char")]
+        [StringLength(200, ErrorMessage = "Too long max. 200 char")]
         public string Address { get; set; }
 
-        [Required(ErrorMessage ="E-mail is mandatory")]
+        [Required(ErrorMessage = "E-mail is mandatory")]
         [DataType(DataType.EmailAddress)]
-        [StringLength(50, ErrorMessage ="Too long max. 50 char")]
+        [StringLength(50, ErrorMessage = "Too long max. 50 char")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage ="Phone is mandatory")]
+        [Required(ErrorMessage = "Phone is mandatory")]
         [DataType(DataType.PhoneNumber)]
         [StringLength(20, ErrorMessage = "Too long max. 20 char")]
         public string Phone { get; set; }
@@ -41,4 +42,5 @@ namespace ScoalaAmadeus.Models
 
         public Guid ParentId { get; set; }
     }
+  
 }
