@@ -124,11 +124,18 @@ namespace ScoalaAmadeus.Controllers
             return View("Preview", previewModel);
         }
 
-        public ActionResult ExportPdf(int id)
+        public ActionResult Export(int id)
         {
             PreviewInvoiceViewModel previewModel = invoiceRepository.GetInvoicePreviewById(id);
 
-            return new ActionAsPdf("Preview",  new { id = previewModel.InvoiceId })
+            return View("Export", previewModel);
+        }
+
+        public ActionResult ExportPdf(int id)
+        {
+            PreviewInvoiceViewModel exportModel = invoiceRepository.GetInvoicePreviewById(id);
+
+            return new ActionAsPdf("Export",  new { id = exportModel.InvoiceId })
             {
                 FileName = Server.MapPath("~/Content/Invoice.pdf")
             };

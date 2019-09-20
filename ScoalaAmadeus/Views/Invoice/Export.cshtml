@@ -1,0 +1,84 @@
+﻿@model ScoalaAmadeus.ViewModels.PreviewInvoiceViewModel
+
+@{
+    ViewBag.Title = "Export";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<content style="display:block; width:800px">
+    <hr style="display:block;overflow:hidden;border-style:inset;border-width:1px" />
+
+    <h3>Invoice</h3>
+    <div>
+        <b>@Html.DisplayName("Series: ")</b>
+        @Html.DisplayFor(model => model.Invoice_Series)
+
+        <b>@Html.DisplayName("Number: ")</b>
+        @Html.DisplayFor(model => model.InvoiceId)
+        <br />
+        <b>@Html.DisplayName("Date: ")</b>
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+    <br />
+    <div>
+        <abbr class="pull-left">
+            <b>@Html.DisplayName("Contractor: ")</b>
+            @Html.DisplayFor(model => model.Contractor)
+        </abbr>
+
+        <abbr class="pull-right">
+            <b>@Html.DisplayName("Client: ")</b>
+            @Html.DisplayFor(model => model.StudentName)
+        </abbr>
+    </div>
+    <hr style="display:block;overflow:hidden;border-style:inset;border-width:1px" />
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Product")
+            </th>
+
+            <th>
+                @Html.DisplayName("Quantity")
+            </th>
+
+            <th>
+                @Html.DisplayName("Price")
+            </th>
+
+            <th class="pull-right">
+                @Html.DisplayName("Value")
+            </th>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Product)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.StudentPrice)
+            </td>
+            <td class="pull-right">
+                @Html.DisplayFor(model => model.Value)
+            </td>
+        </tr>
+    </table>
+    <br />
+
+    <div>
+        <abbr class="pull-right">
+            <b>@Html.DisplayName("Total: ")</b>
+            @Html.DisplayFor(model => model.Total)
+        </abbr>
+    </div>
+
+    <hr style="display:block; margin-left:45em; overflow:hidden;border-style:inset;border-width:1px" />
+
+    <br />
+    <br />
+</content>

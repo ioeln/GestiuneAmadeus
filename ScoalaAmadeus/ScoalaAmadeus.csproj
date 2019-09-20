@@ -340,6 +340,7 @@
     <Content Include="Views\Teacher\TeacherWithCourseName.cshtml" />
     <Content Include="Views\Invoice\Edit.cshtml" />
     <Content Include="Views\Invoice\Preview.cshtml" />
+    <Content Include="Views\Invoice\Export.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
