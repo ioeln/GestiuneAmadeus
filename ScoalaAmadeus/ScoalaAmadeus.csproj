@@ -235,6 +235,17 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\pdf-logo.png" />
+    <Content Include="Content\Template\default.css" />
+    <Content Include="Content\Template\fonts.css" />
+    <Content Include="Content\Template\fonts\fontawesome-social-webfont.svg" />
+    <Content Include="Content\Template\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Template\images\pic01.jpg" />
+    <Content Include="Content\Template\images\pic02.jpg" />
+    <Content Include="Content\Template\images\pic03.jpg" />
+    <Content Include="Content\Template\images\pic04.jpg" />
+    <Content Include="Content\Template\images\pic05.jpg" />
+    <Content Include="Content\Template\index.html" />
+    <Content Include="Content\Template\license.txt" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -251,6 +262,14 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Browsers\qt.browser" />
+    <Content Include="Content\Template\fonts\fontawesome-social-webfont.eot" />
+    <Content Include="Content\Template\fonts\fontawesome-social-webfont.ttf" />
+    <Content Include="Content\Template\fonts\fontawesome-social-webfont.woff" />
+    <Content Include="Content\Template\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Template\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Template\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Template\fonts\FontAwesome.otf" />
+    <Content Include="Content\Template\templated-twocolours.zip" />
     <None Include="Models\DBObjects\SchoolsModels.dbml.layout">
       <DependentUpon>SchoolsModels.dbml</DependentUpon>
     </None>
