@@ -34,12 +34,14 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // GET: Program/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View("Create");
         }
 
         // POST: Program/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -61,6 +63,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // GET: Program/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(Guid id)
         {
             ProgramModel programModel = programRepository.GetProgramById(id);
@@ -68,6 +71,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // POST: Program/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(Guid id, FormCollection collection)
         {
@@ -89,6 +93,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // GET: Program/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(Guid id)
         {
             ProgramModel programModel = programRepository.GetProgramById(id);
@@ -97,6 +102,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // POST: Program/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Delete(Guid id, FormCollection collection)
         {

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 namespace ScoalaAmadeus.Controllers
 {
@@ -42,6 +43,7 @@ namespace ScoalaAmadeus.Controllers
         private ParentRepository parentRepository = new ParentRepository();
 
         // GET: Student/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             var programs = programRepository.GetAllPrograms();
@@ -60,9 +62,12 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // POST: Student/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+            
+
             try
             {
                 // TODO: Add insert logic here
@@ -71,6 +76,7 @@ namespace ScoalaAmadeus.Controllers
                 UpdateModel(studentModel);
 
                 studentRepository.Insert(studentModel);
+                
 
                 return RedirectToAction("Index");
             }
@@ -78,9 +84,12 @@ namespace ScoalaAmadeus.Controllers
             {
                 return View("Create");
             }
+
+            
         }
 
         // GET: Student/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(Guid id)
         {
             StudentModel studentModel = studentRepository.GetStudentById(id);
@@ -89,6 +98,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // POST: Student/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(Guid id, FormCollection collection)
         {
@@ -110,6 +120,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // GET: Student/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(Guid id)
         {
             StudentModel studentModel = studentRepository.GetStudentById(id);
@@ -118,6 +129,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // POST: Student/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Delete(Guid id, FormCollection collection)
         {

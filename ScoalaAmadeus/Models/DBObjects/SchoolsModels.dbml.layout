@@ -52,45 +52,11 @@
         <classShapeMoniker Id="dd1ca728-d538-41c8-bec5-6fef65081cf2" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.53125 : 2.32859537760417); (8.53125 : 4.34375); (10.75 : 4.34375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.53125 : 2.32859537760417); (8.53125 : 4.28125); (10.75 : 4.28125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/SchoolsModelsDataContext/Teacher/Teacher_Schedule" />
       <nodes>
         <classShapeMoniker Id="271960ad-08f0-4859-b8a7-03104bd5d4e4" />
         <classShapeMoniker Id="dd1ca728-d538-41c8-bec5-6fef65081cf2" />
-      </nodes>
-    </associationConnector>
-    <classShape Id="2e757345-f344-48ab-a53a-adf9aed8da1e" absoluteBounds="6, 4.75, 2, 2.7324039713541666">
-      <DataClassMoniker Name="/SchoolsModelsDataContext/Student" />
-      <nestedChildShapes>
-        <elementListCompartment Id="dbdd2b36-5258-4ee3-9d06-66e11b32ac97" absoluteBounds="6.015, 5.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(8 : 5.26044840494792); (10.75 : 5.26044840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SchoolsModelsDataContext/Student/Student_Schedule" />
-      <nodes>
-        <classShapeMoniker Id="2e757345-f344-48ab-a53a-adf9aed8da1e" />
-        <classShapeMoniker Id="dd1ca728-d538-41c8-bec5-6fef65081cf2" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(9 : 6.66429768880208); (8 : 6.66429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SchoolsModelsDataContext/Parent/Parent_Student" />
-      <nodes>
-        <classShapeMoniker Id="1d5027d4-a361-4a66-b94d-e87d7caa449d" />
-        <classShapeMoniker Id="2e757345-f344-48ab-a53a-adf9aed8da1e" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(3.625 : 6.46079752604167); (6 : 6.46079752604167)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/SchoolsModelsDataContext/Program/Program_Student" />
-      <nodes>
-        <classShapeMoniker Id="7016325e-6cac-4138-80a5-a51323877a35" />
-        <classShapeMoniker Id="2e757345-f344-48ab-a53a-adf9aed8da1e" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(7.5 : 2.32859537760417); (7.5 : 4.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/SchoolsModelsDataContext/Teacher/Teacher_Student" />
-      <nodes>
-        <classShapeMoniker Id="271960ad-08f0-4859-b8a7-03104bd5d4e4" />
-        <classShapeMoniker Id="2e757345-f344-48ab-a53a-adf9aed8da1e" />
       </nodes>
     </associationConnector>
     <classShape Id="de2d1ff3-c849-4b3d-b512-0f9e1610905c" absoluteBounds="1.625, 2.5, 2, 2.3478011067708335">
@@ -99,11 +65,45 @@
         <elementListCompartment Id="02caf9f1-9de1-4e9a-80d4-120e9b3ee342" absoluteBounds="1.6400000000000001, 2.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.7187475 : 4.75); (6.7187475 : 3.5937475); (3.625 : 3.5937475)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="7113bd74-ef67-4ec9-98f9-c669c8825c73" absoluteBounds="5.5, 4.5, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/SchoolsModelsDataContext/Student" />
+      <nestedChildShapes>
+        <elementListCompartment Id="238726cd-96ee-4612-9af4-64845c136f3e" absoluteBounds="5.515, 4.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.5 : 5.13544840494792); (10.75 : 5.13544840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SchoolsModelsDataContext/Student/Student_Schedule" />
+      <nodes>
+        <classShapeMoniker Id="7113bd74-ef67-4ec9-98f9-c669c8825c73" />
+        <classShapeMoniker Id="dd1ca728-d538-41c8-bec5-6fef65081cf2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.5 : 4.5); (6.5 : 3.4999995); (3.625 : 3.4999995)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/SchoolsModelsDataContext/Student/Student_Invoice" />
       <nodes>
-        <classShapeMoniker Id="2e757345-f344-48ab-a53a-adf9aed8da1e" />
+        <classShapeMoniker Id="7113bd74-ef67-4ec9-98f9-c669c8825c73" />
         <classShapeMoniker Id="de2d1ff3-c849-4b3d-b512-0f9e1610905c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9 : 6.55370198567708); (7.5 : 6.55370198567708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SchoolsModelsDataContext/Parent/Parent_Student" />
+      <nodes>
+        <classShapeMoniker Id="1d5027d4-a361-4a66-b94d-e87d7caa449d" />
+        <classShapeMoniker Id="7113bd74-ef67-4ec9-98f9-c669c8825c73" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.625 : 6.31814697265625); (5.5 : 6.31814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SchoolsModelsDataContext/Program/Program_Student" />
+      <nodes>
+        <classShapeMoniker Id="7016325e-6cac-4138-80a5-a51323877a35" />
+        <classShapeMoniker Id="7113bd74-ef67-4ec9-98f9-c669c8825c73" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.25 : 2.32859537760417); (7.25 : 4.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SchoolsModelsDataContext/Teacher/Teacher_Student" />
+      <nodes>
+        <classShapeMoniker Id="271960ad-08f0-4859-b8a7-03104bd5d4e4" />
+        <classShapeMoniker Id="7113bd74-ef67-4ec9-98f9-c669c8825c73" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

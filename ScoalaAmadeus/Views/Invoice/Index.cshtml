@@ -57,20 +57,14 @@
             @Html.ActionLink("Details", "Details", new { id = item.InvoiceId }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceId }) |
            
+           
         </td>
 
         <td>
-            <a href="~/Invoice/ExportPdf/?id=@item.InvoiceId"><img src="https://image21.net/103/pdf_icon_png/pdf_icon_png_4.jpg" height="50" /></a>
+            <a href="~/Invoice/ExportPdf/?id=@item.InvoiceId"><img src="~/Content/Images/pdf-logo.png" height="50" /></a>
                         
         </td>
     </tr>
 }
 
 </table>
-<script>
-    
-    function exportPdf() {
-       
-        
-    }
-</script>

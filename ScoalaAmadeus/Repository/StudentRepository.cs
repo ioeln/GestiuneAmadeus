@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
 namespace ScoalaAmadeus.Repository
 {
     public class StudentRepository
@@ -44,6 +45,9 @@ namespace ScoalaAmadeus.Repository
                 dbStudentModel.ProgramId = studentModel.ProgramId;
                 dbStudentModel.TeacherId = studentModel.TeacherId;            
                 dbStudentModel.ParentId = studentModel.ParentId;
+
+                
+
 
                 dbContext.Students.InsertOnSubmit(dbStudentModel);
                 dbContext.SubmitChanges();
@@ -129,7 +133,7 @@ namespace ScoalaAmadeus.Repository
             dbContext.Students.DeleteOnSubmit(dbStudentModel);
             dbContext.SubmitChanges();
         }
-
+        // For child delete
         public List<StudentModel> GetAllStudentsByTeacherId(Guid Id)
         {
             List<StudentModel> studentsList = new List<StudentModel>();
@@ -261,6 +265,68 @@ namespace ScoalaAmadeus.Repository
                     studentModel.ParentName = parent.Name;
                 }
                 studentsList.Add(studentModel);
+            }
+            return studentsList;
+        }
+
+        public List<StudentWithPropNamesViewModel> GetStudentsByTeacherId(Guid Id)
+        {
+            List<StudentWithPropNamesViewModel> studentsList = new List<StudentWithPropNamesViewModel>();
+            List<Student> students = dbContext.Students.Where(x => x.TeacherId == Id).ToList();
+
+            foreach (Models.DBObjects.Student dbStudentModel in students)
+            {
+
+                StudentWithPropNamesViewModel studentModel = new StudentWithPropNamesViewModel();
+
+                studentModel.StudentId = dbStudentModel.StudentId;
+                studentModel.Name = dbStudentModel.Name;
+                studentModel.BirthDate = dbStudentModel.BirthDate;
+                studentModel.Age = dbStudentModel.Age;
+                studentModel.Address = dbStudentModel.Address;
+                studentModel.Email = dbStudentModel.Email;
+                studentModel.Phone = dbStudentModel.Phone;
+                studentModel.ProgramId = dbStudentModel.ProgramId;
+
+                List<ProgramModel> programs = programRepository.GetAllPrograms();
+                foreach (ProgramModel program in programs)
+                {
+                    if (program.ProgramId == dbStudentModel.ProgramId)
+                    {
+                        studentModel.ProgramName = program.Name;
+                    }
+
+                }
+                studentModel.TeacherId = dbStudentModel.TeacherId;
+
+                List<TeacherModel> teachers = teacherRepository.GetAllTeachers();
+                foreach (TeacherModel teacher in teachers)
+                {
+                    if (teacher.TeacherId == dbStudentModel.TeacherId)
+                    {
+                        studentModel.TeacherName = teacher.Name;
+                    }
+                }
+
+                var Teachercourses = teacherRepository.GetAllTeachersWithCourseNames();
+                foreach (TeacherWithCourseNameViewModel teacher in Teachercourses)
+                {
+                    if (teacher.TeacherId == dbStudentModel.TeacherId)
+                    {
+                        studentModel.CourseName = teacher.CourseName;
+                    }
+
+                }
+
+                studentModel.ParentId = dbStudentModel.ParentId;
+
+                List<ParentModel> parents = parentRepository.GetAllParents();
+                foreach (ParentModel parent in parents)
+                {
+                    studentModel.ParentName = parent.Name;
+                }
+                studentsList.Add(studentModel);
+
             }
             return studentsList;
         }

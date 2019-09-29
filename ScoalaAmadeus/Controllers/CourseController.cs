@@ -39,12 +39,14 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // GET: Course/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View("Create");
         }
 
         // POST: Course/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -66,6 +68,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // GET: Course/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(Guid id)
         {
             CourseModel courseToEdit = courseRepository.GetCourseById(id);
@@ -74,6 +77,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // POST: Course/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(Guid id, FormCollection collection)
         {
@@ -95,6 +99,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // GET: Course/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(Guid id)
         {
             CourseModel courseToDelete = courseRepository.GetCourseById(id);
@@ -103,6 +108,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // POST: Course/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Delete(Guid id, FormCollection collection)
         {

@@ -46,6 +46,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // GET: Teacher/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             var courses = courseRepository.GetAllCourses();
@@ -56,6 +57,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // POST: Teacher/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -78,6 +80,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // GET: Teacher/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(Guid id)
         {
             TeacherModel teacherModel = teacherRepository.GetTeacherById(id);
@@ -86,6 +89,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // POST: Teacher/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(Guid id, FormCollection collection)
         {
@@ -107,6 +111,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // GET: Teacher/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(Guid id)
         {
             TeacherModel teacherModel = teacherRepository.GetTeacherById(id);
@@ -115,6 +120,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // POST: Teacher/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Delete(Guid id, FormCollection collection)
         {
@@ -143,6 +149,13 @@ namespace ScoalaAmadeus.Controllers
             {
                 return View("Delete");
             }
+        }
+        [HttpGet]
+        public ActionResult StudentsByTeacherId(Guid Id)
+        {
+            List<StudentWithPropNamesViewModel> studentsByTeacherIdList = studentRepository.GetStudentsByTeacherId(Id);
+
+            return View("StudentsByTeacherId",  studentsByTeacherIdList);
         }
     }
 }

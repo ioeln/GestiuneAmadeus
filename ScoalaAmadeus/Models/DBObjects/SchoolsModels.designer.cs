@@ -48,12 +48,12 @@ namespace ScoalaAmadeus.Models.DBObjects
     partial void InsertSchedule(Schedule instance);
     partial void UpdateSchedule(Schedule instance);
     partial void DeleteSchedule(Schedule instance);
-    partial void InsertStudent(Student instance);
-    partial void UpdateStudent(Student instance);
-    partial void DeleteStudent(Student instance);
     partial void InsertInvoice(Invoice instance);
     partial void UpdateInvoice(Invoice instance);
     partial void DeleteInvoice(Invoice instance);
+    partial void InsertStudent(Student instance);
+    partial void UpdateStudent(Student instance);
+    partial void DeleteStudent(Student instance);
     #endregion
 		
 		public SchoolsModelsDataContext() : 
@@ -134,19 +134,19 @@ namespace ScoalaAmadeus.Models.DBObjects
 			}
 		}
 		
-		public System.Data.Linq.Table<Student> Students
-		{
-			get
-			{
-				return this.GetTable<Student>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Invoice> Invoices
 		{
 			get
 			{
 				return this.GetTable<Invoice>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Student> Students
+		{
+			get
+			{
+				return this.GetTable<Student>();
 			}
 		}
 	}
@@ -1215,6 +1215,277 @@ namespace ScoalaAmadeus.Models.DBObjects
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Invoices")]
+	public partial class Invoice : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _InvoiceId;
+		
+		private string _Invoice_Series;
+		
+		private System.DateTime _Create_Date;
+		
+		private string _Contractor;
+		
+		private System.Guid _StudentId;
+		
+		private int _Quantity;
+		
+		private string _StudentCourse;
+		
+		private decimal _StudentPrice;
+		
+		private EntityRef<Student> _Student;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnInvoiceIdChanging(int value);
+    partial void OnInvoiceIdChanged();
+    partial void OnInvoice_SeriesChanging(string value);
+    partial void OnInvoice_SeriesChanged();
+    partial void OnCreate_DateChanging(System.DateTime value);
+    partial void OnCreate_DateChanged();
+    partial void OnContractorChanging(string value);
+    partial void OnContractorChanged();
+    partial void OnStudentIdChanging(System.Guid value);
+    partial void OnStudentIdChanged();
+    partial void OnQuantityChanging(int value);
+    partial void OnQuantityChanged();
+    partial void OnStudentCourseChanging(string value);
+    partial void OnStudentCourseChanged();
+    partial void OnStudentPriceChanging(decimal value);
+    partial void OnStudentPriceChanged();
+    #endregion
+		
+		public Invoice()
+		{
+			this._Student = default(EntityRef<Student>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int InvoiceId
+		{
+			get
+			{
+				return this._InvoiceId;
+			}
+			set
+			{
+				if ((this._InvoiceId != value))
+				{
+					this.OnInvoiceIdChanging(value);
+					this.SendPropertyChanging();
+					this._InvoiceId = value;
+					this.SendPropertyChanged("InvoiceId");
+					this.OnInvoiceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Invoice_Series", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string Invoice_Series
+		{
+			get
+			{
+				return this._Invoice_Series;
+			}
+			set
+			{
+				if ((this._Invoice_Series != value))
+				{
+					this.OnInvoice_SeriesChanging(value);
+					this.SendPropertyChanging();
+					this._Invoice_Series = value;
+					this.SendPropertyChanged("Invoice_Series");
+					this.OnInvoice_SeriesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Create_Date", DbType="Date NOT NULL")]
+		public System.DateTime Create_Date
+		{
+			get
+			{
+				return this._Create_Date;
+			}
+			set
+			{
+				if ((this._Create_Date != value))
+				{
+					this.OnCreate_DateChanging(value);
+					this.SendPropertyChanging();
+					this._Create_Date = value;
+					this.SendPropertyChanged("Create_Date");
+					this.OnCreate_DateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Contractor", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string Contractor
+		{
+			get
+			{
+				return this._Contractor;
+			}
+			set
+			{
+				if ((this._Contractor != value))
+				{
+					this.OnContractorChanging(value);
+					this.SendPropertyChanging();
+					this._Contractor = value;
+					this.SendPropertyChanged("Contractor");
+					this.OnContractorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid StudentId
+		{
+			get
+			{
+				return this._StudentId;
+			}
+			set
+			{
+				if ((this._StudentId != value))
+				{
+					if (this._Student.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStudentIdChanging(value);
+					this.SendPropertyChanging();
+					this._StudentId = value;
+					this.SendPropertyChanged("StudentId");
+					this.OnStudentIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int NOT NULL")]
+		public int Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentCourse", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string StudentCourse
+		{
+			get
+			{
+				return this._StudentCourse;
+			}
+			set
+			{
+				if ((this._StudentCourse != value))
+				{
+					this.OnStudentCourseChanging(value);
+					this.SendPropertyChanging();
+					this._StudentCourse = value;
+					this.SendPropertyChanged("StudentCourse");
+					this.OnStudentCourseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentPrice", DbType="Decimal(18,0) NOT NULL")]
+		public decimal StudentPrice
+		{
+			get
+			{
+				return this._StudentPrice;
+			}
+			set
+			{
+				if ((this._StudentPrice != value))
+				{
+					this.OnStudentPriceChanging(value);
+					this.SendPropertyChanging();
+					this._StudentPrice = value;
+					this.SendPropertyChanged("StudentPrice");
+					this.OnStudentPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Student_Invoice", Storage="_Student", ThisKey="StudentId", OtherKey="StudentId", IsForeignKey=true)]
+		public Student Student
+		{
+			get
+			{
+				return this._Student.Entity;
+			}
+			set
+			{
+				Student previousValue = this._Student.Entity;
+				if (((previousValue != value) 
+							|| (this._Student.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Student.Entity = null;
+						previousValue.Invoices.Remove(this);
+					}
+					this._Student.Entity = value;
+					if ((value != null))
+					{
+						value.Invoices.Add(this);
+						this._StudentId = value.StudentId;
+					}
+					else
+					{
+						this._StudentId = default(System.Guid);
+					}
+					this.SendPropertyChanged("Student");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Students")]
 	public partial class Student : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1669,277 +1940,6 @@ namespace ScoalaAmadeus.Models.DBObjects
 		{
 			this.SendPropertyChanging();
 			entity.Student = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Invoices")]
-	public partial class Invoice : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _InvoiceId;
-		
-		private string _Invoice_Series;
-		
-		private System.DateTime _Create_Date;
-		
-		private string _Contractor;
-		
-		private System.Guid _StudentId;
-		
-		private int _Quantity;
-		
-		private string _StudentCourse;
-		
-		private decimal _StudentPrice;
-		
-		private EntityRef<Student> _Student;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnInvoiceIdChanging(int value);
-    partial void OnInvoiceIdChanged();
-    partial void OnInvoice_SeriesChanging(string value);
-    partial void OnInvoice_SeriesChanged();
-    partial void OnCreate_DateChanging(System.DateTime value);
-    partial void OnCreate_DateChanged();
-    partial void OnContractorChanging(string value);
-    partial void OnContractorChanged();
-    partial void OnStudentIdChanging(System.Guid value);
-    partial void OnStudentIdChanged();
-    partial void OnQuantityChanging(int value);
-    partial void OnQuantityChanged();
-    partial void OnStudentCourseChanging(string value);
-    partial void OnStudentCourseChanged();
-    partial void OnStudentPriceChanging(decimal value);
-    partial void OnStudentPriceChanged();
-    #endregion
-		
-		public Invoice()
-		{
-			this._Student = default(EntityRef<Student>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int InvoiceId
-		{
-			get
-			{
-				return this._InvoiceId;
-			}
-			set
-			{
-				if ((this._InvoiceId != value))
-				{
-					this.OnInvoiceIdChanging(value);
-					this.SendPropertyChanging();
-					this._InvoiceId = value;
-					this.SendPropertyChanged("InvoiceId");
-					this.OnInvoiceIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Invoice_Series", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
-		public string Invoice_Series
-		{
-			get
-			{
-				return this._Invoice_Series;
-			}
-			set
-			{
-				if ((this._Invoice_Series != value))
-				{
-					this.OnInvoice_SeriesChanging(value);
-					this.SendPropertyChanging();
-					this._Invoice_Series = value;
-					this.SendPropertyChanged("Invoice_Series");
-					this.OnInvoice_SeriesChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Create_Date", DbType="Date NOT NULL")]
-		public System.DateTime Create_Date
-		{
-			get
-			{
-				return this._Create_Date;
-			}
-			set
-			{
-				if ((this._Create_Date != value))
-				{
-					this.OnCreate_DateChanging(value);
-					this.SendPropertyChanging();
-					this._Create_Date = value;
-					this.SendPropertyChanged("Create_Date");
-					this.OnCreate_DateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Contractor", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string Contractor
-		{
-			get
-			{
-				return this._Contractor;
-			}
-			set
-			{
-				if ((this._Contractor != value))
-				{
-					this.OnContractorChanging(value);
-					this.SendPropertyChanging();
-					this._Contractor = value;
-					this.SendPropertyChanged("Contractor");
-					this.OnContractorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentId", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid StudentId
-		{
-			get
-			{
-				return this._StudentId;
-			}
-			set
-			{
-				if ((this._StudentId != value))
-				{
-					if (this._Student.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnStudentIdChanging(value);
-					this.SendPropertyChanging();
-					this._StudentId = value;
-					this.SendPropertyChanged("StudentId");
-					this.OnStudentIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int NOT NULL")]
-		public int Quantity
-		{
-			get
-			{
-				return this._Quantity;
-			}
-			set
-			{
-				if ((this._Quantity != value))
-				{
-					this.OnQuantityChanging(value);
-					this.SendPropertyChanging();
-					this._Quantity = value;
-					this.SendPropertyChanged("Quantity");
-					this.OnQuantityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentCourse", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string StudentCourse
-		{
-			get
-			{
-				return this._StudentCourse;
-			}
-			set
-			{
-				if ((this._StudentCourse != value))
-				{
-					this.OnStudentCourseChanging(value);
-					this.SendPropertyChanging();
-					this._StudentCourse = value;
-					this.SendPropertyChanged("StudentCourse");
-					this.OnStudentCourseChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentPrice", DbType="Decimal(18,0) NOT NULL")]
-		public decimal StudentPrice
-		{
-			get
-			{
-				return this._StudentPrice;
-			}
-			set
-			{
-				if ((this._StudentPrice != value))
-				{
-					this.OnStudentPriceChanging(value);
-					this.SendPropertyChanging();
-					this._StudentPrice = value;
-					this.SendPropertyChanged("StudentPrice");
-					this.OnStudentPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Student_Invoice", Storage="_Student", ThisKey="StudentId", OtherKey="StudentId", IsForeignKey=true)]
-		public Student Student
-		{
-			get
-			{
-				return this._Student.Entity;
-			}
-			set
-			{
-				Student previousValue = this._Student.Entity;
-				if (((previousValue != value) 
-							|| (this._Student.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Student.Entity = null;
-						previousValue.Invoices.Remove(this);
-					}
-					this._Student.Entity = value;
-					if ((value != null))
-					{
-						value.Invoices.Add(this);
-						this._StudentId = value.StudentId;
-					}
-					else
-					{
-						this._StudentId = default(System.Guid);
-					}
-					this.SendPropertyChanged("Student");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 }

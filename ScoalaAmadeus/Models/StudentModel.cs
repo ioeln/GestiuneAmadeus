@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Drawing.Imaging;
 
 namespace ScoalaAmadeus.Models
 {
@@ -35,6 +37,11 @@ namespace ScoalaAmadeus.Models
         [DataType(DataType.PhoneNumber)]
         [StringLength(20, ErrorMessage = "Too long max. 20 char")]
         public string Phone { get; set; }
+
+        [DisplayName("Upload Profile Picture")]
+        public string ImgPath { get; set; }
+
+        public HttpPostedFileBase ImageFile { get; set; }
 
         public Guid TeacherId { get; set; }
 

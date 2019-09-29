@@ -7,9 +7,12 @@ using System.Linq;
 using Rotativa;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Mail;
+using System.Net;
 
 namespace ScoalaAmadeus.Controllers
 {
+    
     public class InvoiceController : Controller
     {
         private InvoiceRepository invoiceRepository = new InvoiceRepository();
@@ -34,7 +37,8 @@ namespace ScoalaAmadeus.Controllers
         private CourseRepository courseRepository = new CourseRepository();
         private ProgramRepository programRepository = new ProgramRepository();
 
-        // GET: Invoice/Create
+        // GET: Invoice/Creates
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             var students = studentRepository.GetAllStudents();
@@ -46,6 +50,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // POST: Invoice/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -67,6 +72,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // GET: Invoice/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             InvoiceModel invoiceModel = invoiceRepository.GetInvoiceById(id);
@@ -75,6 +81,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // POST: Invoice/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -96,6 +103,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // GET: Invoice/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             InvoiceModel invoiceModel = invoiceRepository.GetInvoiceById(id);
@@ -103,6 +111,7 @@ namespace ScoalaAmadeus.Controllers
         }
 
         // POST: Invoice/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -140,6 +149,51 @@ namespace ScoalaAmadeus.Controllers
                 FileName = Server.MapPath("~/Content/Invoice.pdf")
             };
           
+        }
+
+        public ActionResult SendEmail()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SendEmail(string receiver, string subject, string message)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var senderEmail = new MailAddress("scoala.conta123@gmail.com", "emailScoala");
+                    var receiverEmail = new MailAddress(receiver, "Receiver");
+                    var password = "scoala#123456";
+                    var sub = subject;
+                    var body = message;
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp.gmail.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(senderEmail.Address, password)
+                    };
+                    using (var mess = new MailMessage(senderEmail, receiverEmail)
+                    {
+                        Subject = subject,
+                        Body = body
+                    })
+                    {
+                        smtp.Send(mess);
+                    }
+                    return View("SendEmail");
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Some Error";
+            }
+            return View();
         }
     }
 }
