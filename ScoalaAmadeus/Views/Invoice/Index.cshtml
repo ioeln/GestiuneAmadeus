@@ -53,10 +53,11 @@
 
         <td>
             @Html.ActionLink("Preview", "Preview", new { id = item.InvoiceId }) |
+            @Html.ActionLink("Save", "SaveInvoice", new { id = item.InvoiceId }) |
             @Html.ActionLink("Edit", "Edit", new { id = item.InvoiceId }) |
             @Html.ActionLink("Details", "Details", new { id = item.InvoiceId }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceId }) |
-     
+
         </td>
 
         <td>
