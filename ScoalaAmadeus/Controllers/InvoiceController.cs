@@ -105,6 +105,7 @@ namespace ScoalaAmadeus.Controllers
             }
         }
 
+
         // GET: Invoice/Delete/5
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
