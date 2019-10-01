@@ -317,6 +317,8 @@ namespace ScoalaAmadeus.Controllers
                         Body = body,
                         //Attachments = new AttachmentCollection().Add(att1);
                       
+
+
                         //Attachments = 
                     })
                     {
