@@ -173,11 +173,9 @@ namespace ScoalaAmadeus.Controllers
         public ActionResult SaveInvoice(int id)
         {
             string invoiceFileName = "";
-            PreviewInvoiceViewModel exportModel = invoiceRepository.GetInvoicePreviewById(id);
-
             var invoice = invoiceRepository.GetInvoiceById(id);
-
             var students = studentRepository.GetAllStudents();
+
             foreach (var student in students)
             {
                 if (student.StudentId == invoice.StudentId)
@@ -236,10 +234,15 @@ namespace ScoalaAmadeus.Controllers
             { }
         }
 
-        
-
-        public Byte[] SaveInvoiceMail(int id)
+        public ActionResult SendEmail(int id)
         {
+            //Save invoice in folder
+            SaveInvoice(id);
+
+            //Initialize email Components
+            string receiver = "";
+            string subject = "Factura Scoala Amadeus";
+            string message = "Buna Ziua,\n\n Atasat gasiti factura pentru luna in curs. \n\n O zi frumoasa!";
             string invoiceFileName = "";
             PreviewInvoiceViewModel exportModel = invoiceRepository.GetInvoicePreviewById(id);
 
@@ -250,57 +253,21 @@ namespace ScoalaAmadeus.Controllers
             {
                 if (student.StudentId == invoice.StudentId)
                 {
+                    //Get student Name
                     invoiceFileName = student.Name;
-                }
-            }
-           
-            var pdf = new ActionAsPdf("Export", new { id = exportModel.InvoiceId })
-            {
-                FileName = $"F-{invoice.InvoiceId}_{invoiceFileName}.pdf",
-            };
-
-            Byte[] pdfData = pdf.BuildPdf(ControllerContext);
-            return pdfData;
-        }
-
-
-        public ActionResult SendEmail()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult SendEmail(string receiver, string subject, string message)
-        {
-            //string receiver = "ioelnechita@ymail.com";
-            //string subject = "Test";
-            //string message = "Acesta este mesajul testului cu pdf attach";
-            int id = 32;
-            string invoiceFileName = "";
-            var invoice = invoiceRepository.GetInvoiceById(id);
-
-            var students = studentRepository.GetAllStudents();
-            foreach (var student in students)
-            {
-                if (student.StudentId == invoice.StudentId)
-                {
-                    invoiceFileName = student.Name;
+                    //Get Student Email
+                    receiver = student.Email;
                 }
             }
             try
             {
-                
-
                 if (ModelState.IsValid)
                 {
-                    var senderEmail = new MailAddress("scoala.conta123@gmail.com", "emailScoala");
-                    var receiverEmail = new MailAddress(receiver, "Receiver");
+                    var senderEmail = new MailAddress("scoala.conta123@gmail.com", "Contabilitate Amadeus");
+                    var receiverEmail = new MailAddress(receiver, receiver);
                     var password = "scoala#123456";
                     var sub = subject;
                     var body = message;
-                    MemoryStream stream = new MemoryStream(SaveInvoiceMail(id));
-                    Attachment att1 = new Attachment(stream, $"F-{invoice.InvoiceId}_{invoiceFileName}.pdf", "application/pdf");
-                    
 
 
                     var smtp = new SmtpClient
@@ -312,17 +279,18 @@ namespace ScoalaAmadeus.Controllers
                         UseDefaultCredentials = false,
                         Credentials = new NetworkCredential(senderEmail.Address, password)
                     };
+
+                    Attachment attachment;
+                    attachment = new Attachment($"C:\\TEMP\\F-{invoice.InvoiceId}_{invoiceFileName}.pdf");
+
                     using (var mess = new MailMessage(senderEmail, receiverEmail)
                     {
                         Subject = subject,
                         Body = body,
-                        //Attachments = new AttachmentCollection().Add(att1);
-                      
-
-
-                        //Attachments = 
                     })
+
                     {
+                        mess.Attachments.Add(attachment);
                         smtp.Send(mess);
                     }
                     return View("SendEmail");
