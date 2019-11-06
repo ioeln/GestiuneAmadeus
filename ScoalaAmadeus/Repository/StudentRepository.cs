@@ -262,7 +262,10 @@ namespace ScoalaAmadeus.Repository
                 List<ParentModel> parents = parentRepository.GetAllParents();
                 foreach (ParentModel parent in parents)
                 {
-                    studentModel.ParentName = parent.Name;
+                    if (parent.ParentId == studentModel.ParentId)
+                    {
+                        studentModel.ParentName = parent.Name;
+                    }                   
                 }
                 studentsList.Add(studentModel);
             }
